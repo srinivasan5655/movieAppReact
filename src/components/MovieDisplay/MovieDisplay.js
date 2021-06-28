@@ -40,7 +40,15 @@ const MovieDisplay = () => {
     <div className="moviedisplay">
       <div className="header">
         <h2 className="title">Trending</h2>
-        <p>logo</p>
+        <div className="search-box">
+          <input
+            className="search-txt"
+            type="text"
+            name=""
+            placeholder="Type to search"
+          ></input>
+          <i class="fas fa-search search-btn"></i>
+        </div>
       </div>
 
       <div className="moviecontainer">

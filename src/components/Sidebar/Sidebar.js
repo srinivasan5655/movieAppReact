@@ -3,7 +3,7 @@ import { TopSidebarData, BottomSidebarData } from "./SidebarData";
 import "./sidebar.css";
 
 const Sidebar = () => {
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState(1);
 
   const onClick = (id) => {
     setActive(id);
