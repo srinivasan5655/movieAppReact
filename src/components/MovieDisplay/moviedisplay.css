@@ -1,0 +1,70 @@
+.moviedisplay {
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw - 200px);
+  padding: 40px 50px;
+}
+
+.header {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  justify-content: space-between;
+  color: white;
+}
+
+.moviecontainer {
+  scroll-behavior: smooth;
+  display: grid;
+  grid-gap: 5px 5px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: azure;
+  height: 500px;
+}
+
+.movie img {
+  height: 400px;
+  width: 300px;
+}
+
+.moviedetail p {
+  font-weight: bold;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  color: whitesmoke;
+  cursor: pointer;
+  font-size: larger;
+}
+
+.imagecontainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.overview {
+  position: absolute;
+  /* color: black; */
+  /* background-color: whitesmoke; */
+  color: black;
+  background-color: bisque;
+  padding-bottom: 15px;
+  max-height: 400px;
+  width: 300px;
+  bottom: 0;
+  border-radius: 10px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.imagecontainer:hover .overview {
+  transform: translateY(0%);
+}
