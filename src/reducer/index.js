@@ -4,6 +4,8 @@ const movieData = (state = {}, action) => {
   switch (action.type) {
     case "FETCH_TRENDING":
       return { ...state, ...action.payload };
+    case "FETCH_SEARCH":
+      return { ...state, ...action.payload };
     default:
       return state;
   }

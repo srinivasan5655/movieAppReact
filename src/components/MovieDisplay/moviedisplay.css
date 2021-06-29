@@ -71,6 +71,8 @@
   transform: translateY(0%);
 }
 
+/* search box */
+
 .search-box {
   position: relative;
   background: white;
@@ -97,6 +99,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 5px #d3e4df;
+  animation: pulse 3s infinite ease-in-out;
 }
 
 .search-txt {
@@ -109,4 +113,17 @@
   font-size: 16px;
   transition: 0.5s;
   width: 0px;
+}
+
+.nodrop {
+  cursor: no-drop;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 5px #d3e4df;
+  }
+  100% {
+    box-shadow: 0 0 20px #d3e4df;
+  }
 }

@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "./moviedisplay.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTrending } from "../../action";
+import { fetchTrending, fetchSearch } from "../../action";
 
 const MovieDisplay = () => {
   const dispatch = useDispatch();
   const baseImageUrl = "https://image.tmdb.org/t/p/w500";
   const [currentPage, setCurrentPage] = useState(1);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
-    dispatch(fetchTrending(currentPage));
+    // dispatch(fetchTrending(currentPage));
+    dispatch(fetchSearch(1, "my hero"));
   }, [dispatch, currentPage]);
 
+  // const data = useSelector((state) => state.movieData);
   const data = useSelector((state) => state.movieData);
   console.log(data);
 
-  const setPageNo = (page) => {
+  const previousPageEl = (page) => {
     if (page > 1) {
       return (
-        <p className="back" onClick={(e) => no(e, setCurrentPage, currentPage)}>
+        <p
+          className="back"
+          onClick={(e) => calcCurrentPage(e, data, setCurrentPage, currentPage)}
+        >
           {"<"} Page {currentPage - 1}
         </p>
       );
@@ -27,11 +33,12 @@ const MovieDisplay = () => {
     }
   };
 
-  const no = (e, setCurrentPage, page) => {
+  const calcCurrentPage = (e, data, setCurrentPage, currentPage) => {
     if (e.target.classList.contains("forward")) {
-      setCurrentPage(page + 1);
+      if (currentPage >= data.total_pages) return;
+      setCurrentPage(currentPage + 1);
     } else if (e.target.classList.contains("back")) {
-      setCurrentPage(page - 1);
+      setCurrentPage(currentPage - 1);
     }
     document.documentElement.scrollTop = 0;
   };
@@ -44,15 +51,18 @@ const MovieDisplay = () => {
           <input
             className="search-txt"
             type="text"
-            name=""
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
             placeholder="Type to search"
           ></input>
-          <i class="fas fa-search search-btn"></i>
+
+          <i className="fas fa-search search-btn"></i>
         </div>
       </div>
 
       <div className="moviecontainer">
         {data.results?.map((value) => {
+          if (value.poster_path === null) return;
           return (
             <div className="movie" key={value.id}>
               <div className="imagecontainer">
@@ -75,12 +85,16 @@ const MovieDisplay = () => {
       </div>
 
       <div className="pagination">
-        {setPageNo(currentPage)}
+        {previousPageEl(currentPage)}
         <p
-          className="forward"
-          onClick={(e) => no(e, setCurrentPage, currentPage)}
+          className={
+            data.total_pages === currentPage ? "forward nodrop" : "forward"
+          }
+          onClick={(e) => calcCurrentPage(e, data, setCurrentPage, currentPage)}
         >
-          Page {currentPage + 1} {">"}
+          {data.total_pages === currentPage
+            ? "End"
+            : `Page ${currentPage + 1} >`}
         </p>
       </div>
     </div>

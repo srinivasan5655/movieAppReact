@@ -27,7 +27,7 @@ a:hover {
 
 .sidebar h2:hover {
   background-color: #2c3c49;
-  border-left: 5px solid greenyellow;
+  border-left: 3px solid #1b9174;
   color: aliceblue;
 }
 
@@ -37,7 +37,7 @@ a:hover {
 
 .active {
   background-color: #2c3c49;
-  border-left: 5px solid greenyellow;
+  border-left: 3px solid #1b9174;
 }
 
 .active a {
