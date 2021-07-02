@@ -1,26 +1,26 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./moviedisplay.css";
 import { useDispatch, useSelector } from "react-redux";
-import { togleSidebar } from "../../action";
+import { fetchTrending, fetchSearch } from "../../action";
+import { TopSidebarData } from "../Sidebar/SidebarData";
 
-const MovieDisplay = (props) => {
+const MovieDisplay = () => {
   const dispatch = useDispatch();
   const baseImageUrl = "https://image.tmdb.org/t/p/w500";
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState(search);
-  const [title, setTitle] = useState(props.TitleData.title);
+  const [title, setTitle] = useState(TopSidebarData[0].title);
   const initial = useSelector((state) => state.getInitialState.title);
   const [trendOrSearch, setTrendOrSearch] = useState(initial);
-  const menuIcon = useRef();
 
   useEffect(() => {
-    if (initial === props.TitleData.title) {
+    if (initial === TopSidebarData[0].title) {
       setTrendOrSearch("trend");
-      setTitle(props.TitleData.title);
+      setTitle(TopSidebarData[0].title);
       setCurrentPage(1);
     }
-  }, [initial, props.TitleData.title]); //props.TitleData.title remove if error
+  }, [initial]);
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -35,14 +35,15 @@ const MovieDisplay = (props) => {
 
   useEffect(() => {
     if (trendOrSearch === "search") {
-      dispatch(props.dispatchSearch(currentPage, debouncedSearch));
+      dispatch(fetchSearch(currentPage, debouncedSearch));
       setTitle(`Search results for ${debouncedSearch}`);
     } else {
-      dispatch(props.dispatchAction(currentPage));
+      dispatch(fetchTrending(currentPage));
     }
-  }, [dispatch, currentPage, trendOrSearch, debouncedSearch, props]);
+  }, [currentPage, trendOrSearch, debouncedSearch]);
 
   const data = useSelector((state) => state.movieData);
+  console.log(data);
 
   const previousPageEl = (page) => {
     if (page > 1) {
@@ -69,23 +70,9 @@ const MovieDisplay = (props) => {
     document.documentElement.scrollTop = 0;
   };
 
-  const test = (e) => {
-    if (e.target.classList.contains("hamburger")) {
-      dispatch(togleSidebar());
-      console.log(e.target.classList.contains("hamburger"));
-    }
-  };
-
   return (
     <div className="moviedisplay">
       <div className="header">
-        <img
-          onClick={(e) => test(e)}
-          ref={menuIcon}
-          alt="menu icon"
-          className="hamburger"
-          src="https://img.icons8.com/material-outlined/24/ffffff/menu--v1.png"
-        />
         <h2 className="title">{title}</h2>
         <div className="search-box">
           <input
@@ -106,7 +93,7 @@ const MovieDisplay = (props) => {
 
       <div className="moviecontainer">
         {data.results?.map((value) => {
-          if (value.poster_path === null) return <></>;
+          if (value.poster_path === null) return;
           return (
             <div className="movie" key={value.id}>
               <div className="imagecontainer">
@@ -120,7 +107,7 @@ const MovieDisplay = (props) => {
                 </div>
               </div>
               <div className="moviedetail">
-                <h4>{value.name ? value.name : value.title}</h4>
+                <h4>{value.title}</h4>
                 <p>{value.vote_average}</p>
               </div>
             </div>

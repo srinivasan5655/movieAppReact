@@ -1,9 +1,10 @@
 .sidebar {
   height: 100vh;
-  width: 200px;
+  width: 210px;
   line-height: 50px;
   position: sticky;
   top: 0;
+  transition: all 0.2s ease-in;
 }
 
 .sidebar a {
@@ -13,12 +14,18 @@
 }
 
 .top {
-  padding: 5vh 0;
+  /* padding: 5vh 0; */
+  /* 5vh original */
+  padding-bottom: 5vh; /* extra*/
   border-bottom: 1px solid #91979c;
+  width: 100%;
+  /* transition: all 0.4s ease-in-out; */
 }
 
 .bottom {
   padding: 5vh 0;
+  width: 100%;
+  /* transition: all 0.4s ease-in-out; */
 }
 
 a:hover {
@@ -40,10 +47,55 @@ a:hover {
   border-left: 3px solid #1b9174;
 }
 
+.active:hover {
+  background-color: blue;
+}
+
 .active a {
   color: aliceblue;
 }
 
-.disabled {
-  pointer-events: none;
+/* test */
+
+.logo img {
+  margin-top: 20px;
+  margin-left: 50px;
+  height: 70px;
+  width: 70px;
+  border-radius: 25px;
+}
+
+@media only screen and (max-width: 900px) {
+  .logo {
+    display: none;
+  }
+
+  .sidebar {
+    width: 0;
+    visibility: hidden;
+    line-height: 40px;
+    position: static;
+    padding-top: 50px;
+  }
+
+  .sidebar h2 {
+    font-size: 20px;
+  }
+
+  .sidebar .top {
+    padding: 0;
+    padding-bottom: 5vh;
+    width: 100%;
+  }
+
+  .sidebar .bottom {
+    padding: 0;
+    padding-top: 5vh;
+    width: 100%;
+  }
+
+  .sidebar a {
+    color: #a8a8a8;
+    padding: 5px;
+  }
 }

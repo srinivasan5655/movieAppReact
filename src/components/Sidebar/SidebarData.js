@@ -1,19 +1,23 @@
 export const TopSidebarData = [
   {
-    title: "Trending Movie",
+    title: "TrendingMovie",
     id: 1,
+    path: "/",
   },
   {
-    title: "Trending",
+    title: "Popular",
     id: 2,
+    path: "/Popular",
   },
   {
-    title: "Trending",
+    title: "Upcomming",
     id: 3,
+    path: "/Upcomming",
   },
   {
-    title: "Trending",
+    title: "Now Playing",
     id: 4,
+    path: "/nowplaying",
   },
 ];
 
@@ -21,17 +25,11 @@ export const BottomSidebarData = [
   {
     title: "Trending show",
     id: 5,
+    path: "/trendingshow",
   },
   {
-    title: "Anime",
+    title: "Top Rated TV",
     id: 6,
-  },
-  {
-    title: "Trending",
-    id: 7,
-  },
-  {
-    title: "Trending",
-    id: 8,
+    path: "/topratedshows",
   },
 ];

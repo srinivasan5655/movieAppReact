@@ -1,4 +1,5 @@
 .moviedisplay {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   width: calc(100vw - 200px);
@@ -14,9 +15,8 @@
 }
 
 .moviecontainer {
-  scroll-behavior: smooth;
   display: grid;
-  grid-gap: 5px 5px;
+  grid-gap: 5px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
@@ -71,6 +71,11 @@
   transform: translateY(0%);
 }
 
+.hamburger {
+  height: 20px;
+  display: none;
+}
+
 /* search box */
 
 .search-box {
@@ -85,6 +90,10 @@
   background: white;
   width: 240px;
   padding: 0 6px;
+}
+
+.search-box:hover .search-btn {
+  animation: none;
 }
 
 .search-btn {
@@ -125,5 +134,114 @@
   }
   100% {
     box-shadow: 0 0 20px #d3e4df;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .header {
+    display: flex;
+    height: 50px;
+    width: 80vw;
+    justify-content: space-between;
+    color: white;
+  }
+
+  .moviedisplay {
+    width: 100vw;
+    padding: 30px 40px;
+  }
+
+  .movie {
+    height: 350px;
+    width: 200px;
+  }
+
+  .movie img {
+    height: 250px;
+    width: 200px;
+  }
+
+  .overview {
+    max-height: 250px;
+    width: 200px;
+  }
+
+  .moviecontainer {
+    scroll-behavior: smooth;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .moviedetail {
+    width: 100%;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .moviedisplay {
+    padding: 10px;
+  }
+
+  .movie img {
+    height: 250px;
+    width: 170px;
+  }
+
+  .movie {
+    height: 300px;
+    width: 150px;
+  }
+
+  .moviedetail {
+    /* width: 100%; */
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .moviecontainer {
+    scroll-behavior: smooth;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .moviedetail p {
+    font-weight: bold;
+    padding-top: 5px;
+  }
+
+  .overview {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .search-box:hover > .search-txt {
+    background: white;
+    width: 200px;
+    padding: 0;
+  }
+
+  .search-box:hover > .search-txt {
+    background: white;
+    width: 200px;
+    padding: 0 6px;
+  }
+
+  a {
+    text-decoration: none;
   }
 }
