@@ -11,7 +11,6 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const sidebar = useSelector((state) => state.sidebarState);
-  // console.log(sidebar);
   const [sidebarState, setSidebarState] = useState(sidebar);
   const sidebarRef = useRef();
 
@@ -39,7 +38,6 @@ const Sidebar = () => {
       sidebarRef.current.style.width = "200px";
       sidebarRef.current.style.visibility = "visible";
     } else if (!sidebarState && sidebarRef.current) {
-      // if (sidebarRef.current.clientWidth >= 201) return;
       sidebarRef.current.style.width = "0px";
       sidebarRef.current.style.visibility = "hidden";
     }

@@ -14,18 +14,14 @@
 }
 
 .top {
-  /* padding: 5vh 0; */
-  /* 5vh original */
-  padding-bottom: 5vh; /* extra*/
+  padding-bottom: 5vh;
   border-bottom: 1px solid #91979c;
   width: 100%;
-  /* transition: all 0.4s ease-in-out; */
 }
 
 .bottom {
   padding: 5vh 0;
   width: 100%;
-  /* transition: all 0.4s ease-in-out; */
 }
 
 a:hover {
@@ -54,8 +50,6 @@ a:hover {
 .active a {
   color: aliceblue;
 }
-
-/* test */
 
 .logo img {
   margin-top: 20px;

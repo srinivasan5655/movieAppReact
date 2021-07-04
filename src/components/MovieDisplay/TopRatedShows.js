@@ -1,5 +1,5 @@
 import React from "react";
-import MovieDisplay from "./MovieDisplay";
+import MovieDisplay from "./ParentComponent/MovieDisplay";
 import { fetchTopRatedShow } from "../../action";
 import { BottomSidebarData } from "../Sidebar/SidebarData";
 import { fetchSearchTv } from "../../action";

@@ -190,7 +190,7 @@
 
   .movie img {
     height: 250px;
-    width: 170px;
+    width: 150px;
   }
 
   .movie {
@@ -199,7 +199,6 @@
   }
 
   .moviedetail {
-    /* width: 100%; */
     font-size: 12px;
     line-height: 16px;
   }
